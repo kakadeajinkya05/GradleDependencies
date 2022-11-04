@@ -15,4 +15,20 @@ pattern: '%h %l %{username}r %t "%r" %I %s %b "%{Referer}i" "%{User-Agent}i" %{X
 <PatternLayout pattern="%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{%5p} [%clr{${appName}}, %clr{%X}] %clr{%processId}{magenta} %clr{---}{faint} %clr{[%15.15t]}{faint} %clr{%-40.40c{3}}{cyan} %clr{:}{faint} %m{nolookups}%n%xwEx"/>
 ```
 
-
+```
+groups:
+  - name: service_name
+    rules:
+      - alert: service_down
+        expr: up{kubernetes_namespace="sjms", service="sjms"} == 0
+        for: 5m
+        labels:
+          severity: critical
+          service: service
+          alertname: service_down
+          sjms: true
+        annotations:
+          summary: "Instance {{ $labels.service }} down"
+          identifier: '{{ $labels.service }}'
+          description: "{{ $labels.service }} has been down for more than 5 minutes."
+```
