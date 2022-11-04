@@ -20,7 +20,7 @@ groups:
   - name: service_name
     rules:
       - alert: service_down
-        expr: up{kubernetes_namespace="sjms", service="sjms"} == 0
+        expr: up{kubernetes_namespace="service_namespace", service="service_name"} == 0
         for: 5m
         labels:
           severity: critical
