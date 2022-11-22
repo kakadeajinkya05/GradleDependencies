@@ -82,7 +82,7 @@
     <dependency>
 			<groupId>org.springframework.integration</groupId>
 			<artifactId>spring-integration-mongodb</artifactId>
-			<version>4.3.16.RELEASE</version>
+			<version>6.0.0</version>
 		</dependency>
     <dependency> 
 			<groupId>org.mongodb</groupId> 
